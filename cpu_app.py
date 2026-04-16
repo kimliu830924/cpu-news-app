@@ -20,7 +20,10 @@ st.title("🛡️ 半導體 & CPU 產業鏈・AI 精準監控")
 # --- 2. 側邊欄設定 ---
 with st.sidebar:
     st.header("⚙️ 設定中心")
-    api_key = st.text_input("輸入 Gemini API Key (選填，用於 AI 過濾)", type="password")
+if "GEMINI_API_KEY" in st.secrets:
+    api_key = st.secrets["GEMINI_API_KEY"]
+else:
+    api_key = st.text_input("輸入 Gemini API Key", type="password")
     
     hours_limit = st.slider("搜尋過去幾小時？", 1, 48, 12)
     
